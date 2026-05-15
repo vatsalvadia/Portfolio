@@ -20,7 +20,9 @@ import {
   PieChart,
   Bot,
   MessageSquare,
-  Award
+  Award,
+  Menu,
+  X
 } from 'lucide-react';
 
 // --- STYLES ---
@@ -50,7 +52,10 @@ const styles = `
   }
 
   .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+  .portfolio-app { overflow-x: hidden; width: 100%; position: relative; }
   
+  .hero-cta-group { display: flex; gap: 1.2rem; }
+  .cta-button-group { display: flex; gap: 1.5rem; justify-content: center; }
   .main-nav {
     position: fixed;
     top: 0;
@@ -81,6 +86,15 @@ const styles = `
   }
   .nav-links a:hover { color: var(--accent-primary); }
   
+  .mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    z-index: 1100;
+  }
+
   .logo { 
     font-size: 1.5rem; 
     font-weight: 800; 
@@ -89,11 +103,21 @@ const styles = `
     -webkit-text-fill-color: transparent;
     letter-spacing: -0.02em;
     text-decoration: none;
+    white-space: nowrap;
   }
 
   .hero {
-    padding: 8rem 0 4rem;
+    padding: 100px 0 80px;
     position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+  }
+  .hero-inner {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
     display: grid;
     grid-template-columns: 1.2fr 0.8fr;
     gap: 4rem;
@@ -107,10 +131,10 @@ const styles = `
     border: 1px solid rgba(99, 102, 241, 0.2);
     padding: 0.5rem 1rem;
     border-radius: 100px;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     font-weight: 600;
     color: var(--accent-primary);
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
   }
   .hero h1 {
     font-size: 4rem;
@@ -368,10 +392,15 @@ const styles = `
     overflow: hidden;
     margin-top: 3rem;
   }
-  table { width: 100%; border-collapse: collapse; text-align: left; }
-  th { background: rgba(255,255,255,0.02); padding: 1.8rem; font-size: 0.85rem; text-transform: uppercase; font-weight: 700; color: var(--text-muted); border-bottom: 1px solid var(--glass-border); }
-  td { padding: 1.8rem; border-bottom: 1px solid var(--glass-border); font-size: 1.1rem; color: var(--text-secondary); }
-  .rank-badge { background: #064e3b; color: #34d399; padding: 0.4rem 1rem; border-radius: 100px; font-size: 0.9rem; font-weight: 800; }
+  .table-scroll-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  table { width: 100%; border-collapse: collapse; text-align: left; min-width: 480px; }
+  th { background: rgba(255,255,255,0.02); padding: 1.2rem 1.5rem; font-size: 0.8rem; text-transform: uppercase; font-weight: 700; color: var(--text-muted); border-bottom: 1px solid var(--glass-border); }
+  td { padding: 1.2rem 1.5rem; border-bottom: 1px solid var(--glass-border); font-size: 1rem; color: var(--text-secondary); }
+  .rank-badge { background: #064e3b; color: #34d399; padding: 0.35rem 0.85rem; border-radius: 100px; font-size: 0.85rem; font-weight: 800; white-space: nowrap; }
 
   .journey-item {
     display: grid;
@@ -432,16 +461,125 @@ const styles = `
   .highlight { color: var(--accent-primary); }
   
   @media (max-width: 1024px) {
-    .hero { grid-template-columns: 1fr; text-align: center; gap: 5rem; padding-top: 10rem; }
-    .hero h1 { font-size: 3.5rem; }
-    .hero-p { margin: 0 auto 3rem; }
-    .hero-image-container { max-width: 500px; margin: 0 auto; }
-    .stats-grid { grid-template-columns: repeat(2, 1fr); margin-top: 5rem; }
-    .footer-grid { grid-template-columns: 1fr 1fr; gap: 4rem; }
+    .mobile-menu-btn { display: block; }
+    .nav-links {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 80%;
+      height: 100vh;
+      background: var(--bg-deep);
+      flex-direction: column;
+      justify-content: center;
+      padding: 4rem 2rem;
+      transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+      z-index: 1050;
+    }
+    .nav-links.open { right: 0; }
+    .nav-links a { font-size: 1.5rem; width: 100%; text-align: center; }
+    
+    .hero { 
+      padding: 90px 0 60px;
+      min-height: auto;
+    }
+    .hero-inner {
+      grid-template-columns: 1fr;
+      text-align: center;
+      gap: 2rem;
+    }
+    .hero h1 { font-size: 2rem; line-height: 1.2; letter-spacing: -0.01em; }
+    .hero-badge { font-size: 0.75rem; padding: 0.4rem 0.85rem; margin-bottom: 1rem; }
+    .hero-p { margin: 0 auto 1.5rem; font-size: 0.95rem; max-width: 460px; }
+    .hero-image-container { max-width: 280px; margin: 0 auto; }
+    .hero-cta-group, .cta-button-group { 
+      flex-direction: column; 
+      gap: 0.85rem; 
+      width: 100%; 
+      align-items: center;
+    }
+    .hero-cta-group .btn, .cta-button-group .btn { width: 100%; max-width: 360px; justify-content: center; }
+    .stats-grid { grid-template-columns: 1fr 1fr; margin-top: 2.5rem; gap: 0.85rem; }
+    .stat-card { padding: 1.25rem; }
+    .stat-num { font-size: 1.8rem; }
+    .knowledge-grid { grid-template-columns: 1fr; gap: 1rem; margin-top: 2rem; }
+    .kb-card { padding: 1.5rem; }
+    .footer-grid { grid-template-columns: 1fr; gap: 2.5rem; text-align: center; }
+    .footer-links ul { display: flex; flex-direction: column; align-items: center; }
+    .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
     .featured-grid { grid-template-columns: 1fr; }
-    .testimonial-grid { grid-template-columns: 1fr; }
-    .journey-item { grid-template-columns: 1fr; gap: 1.5rem; }
+    .journey-item { grid-template-columns: 1fr; gap: 0.75rem; padding: 1.5rem; margin-bottom: 1rem; border-radius: 20px; }
+    .journey-role { font-size: 1.25rem; }
+    .journey-desc { font-size: 1rem; }
+    
+    .section { padding: 3.5rem 0; }
+    .section h2 { font-size: 1.9rem; }
+    .section-header { margin-bottom: 2rem; }
+    .work-title { font-size: 1.35rem; }
+    .work-content { padding: 1.5rem; }
+    .work-img { height: 240px; }
+    .tech-pill { padding: 0.6rem 1.2rem; font-size: 0.9rem; }
+    
+    /* Floating buttons - smaller, don't overlap */
+    .floating-btn { width: 46px !important; height: 46px !important; }
   }
+
+  @media (max-width: 480px) {
+    .hero { padding: 80px 0 40px; }
+    .hero-inner { padding: 0 1rem; }
+    .hero h1 { font-size: 1.75rem; }
+    .container { padding: 0 1rem; }
+    .logo { font-size: 1rem; }
+    .stats-grid { grid-template-columns: 1fr; }
+    
+    #contact > div > div { padding: 2.5rem 1rem !important; border-radius: 20px !important; }
+    #contact h2 { font-size: 1.6rem !important; }
+  }
+
+
+  /* Floating Action Buttons */
+  .floating-actions {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    z-index: 10000;
+  }
+  .floating-btn {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    transition: all 0.3s;
+    text-decoration: none;
+  }
+  .floating-btn:hover { transform: scale(1.1) translateY(-4px); }
+  .fab-whatsapp {
+    background: #25D366;
+    box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
+  }
+  .fab-phone {
+    background: var(--accent-primary);
+    box-shadow: 0 8px 20px rgba(99, 102, 241, 0.4);
+  }
+
+  @media (max-width: 1024px) {
+    .floating-actions {
+      bottom: 1.2rem;
+      right: 1.2rem;
+      gap: 0.6rem;
+    }
+    .floating-btn {
+      width: 46px;
+      height: 46px;
+    }
+  }
+
 `;
 
 // --- DATA ---
@@ -592,6 +730,7 @@ const App = () => {
   const [scrolled, setScrolled] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 1024);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -624,11 +763,27 @@ const App = () => {
       <nav className={`main-nav ${scrolled ? 'scrolled' : ''}`}>
         <header className="container nav-content">
           <a href="#" className="logo">VATSAL VADIA</a>
-          <div className="nav-links">
+          
+          <button 
+            className="mobile-menu-btn" 
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label="Toggle navigation menu"
+          >
+            {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
+          </button>
+
+          <div className={`nav-links ${isMenuOpen ? 'open' : ''}`}>
             {NAV_LINKS.map(link => (
-              <a key={link.name} href={link.href}>{link.name}</a>
+              <a key={link.name} href={link.href} onClick={() => setIsMenuOpen(false)}>{link.name}</a>
             ))}
-            <a href="https://calendar.app.google/UFdTwiyhE52yscFDA" target="_blank" rel="noopener noreferrer" className="btn btn-primary" style={{ padding: '0.75rem 1.5rem', fontSize: '0.9rem' }}>
+            <a 
+              href="https://calendar.app.google/UFdTwiyhE52yscFDA" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="btn btn-primary" 
+              style={{ padding: '0.75rem 1.5rem', fontSize: '0.9rem' }}
+              onClick={() => setIsMenuOpen(false)}
+            >
               Book Free Call
             </a>
           </div>
@@ -637,8 +792,9 @@ const App = () => {
 
       <main>
         {/* Hero Section */}
-        <section className="container hero">
-          <article>
+        <section className="hero">
+          <div className="hero-inner">
+            <article>
             <div className="hero-badge">
               <CheckCircle2 size={16} /> Verified Performance Marketer
             </div>
@@ -648,7 +804,7 @@ const App = () => {
             <p className="hero-p">
               I’m <span className="highlight" style={{ fontWeight: 700 }}>Vatsal Vadia</span>, a performance marketer helping brands grow through SEO, paid ads, AI automation, and conversion strategy.
             </p>
-            <div style={{ display: 'flex', gap: '1.2rem' }}>
+            <div className="hero-cta-group">
               <a href="https://calendar.app.google/UFdTwiyhE52yscFDA" target="_blank" rel="noopener noreferrer" className="btn btn-primary">
                 Book a Free Strategy Call <ArrowRight size={20} />
               </a>
@@ -656,8 +812,8 @@ const App = () => {
                 View Case Studies
               </a>
             </div>
-          </article>
-          <aside className="hero-image-container" style={{ border: 'none', background: 'transparent', boxShadow: 'none', overflow: 'visible' }}>
+            </article>
+            <aside className="hero-image-container" style={{ border: 'none', background: 'transparent', boxShadow: 'none', overflow: 'visible' }}>
             <div style={{
               position: 'relative',
               width: '100%',
@@ -681,6 +837,7 @@ const App = () => {
               filter: 'blur(40px)'
             }}></div>
           </aside>
+          </div>
         </section>
 
         {/* Stats Section */}
@@ -815,26 +972,28 @@ const App = () => {
               <p style={{ color: 'var(--text-muted)' }}>Consistent #1 placements for high-competition keywords in global markets.</p>
             </header>
             <div className="dashboard-container">
-              <table>
-                <thead>
-                  <tr>
-                    <th>Keyword Cluster</th>
-                    <th>Volume</th>
-                    <th>Market</th>
-                    <th>Live Status</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {RANKINGS.map((item, i) => (
-                    <tr key={i}>
-                      <td style={{ fontWeight: 800 }}>{item.keyword}</td>
-                      <td>{item.volume}</td>
-                      <td>{item.location}</td>
-                      <td><span className="rank-badge">{item.rank}</span></td>
+              <div className="table-scroll-wrapper">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Keyword Cluster</th>
+                      <th>Volume</th>
+                      <th>Market</th>
+                      <th>Live Status</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {RANKINGS.map((item, i) => (
+                      <tr key={i}>
+                        <td style={{ fontWeight: 800 }}>{item.keyword}</td>
+                        <td>{item.volume}</td>
+                        <td>{item.location}</td>
+                        <td><span className="rank-badge">{item.rank}</span></td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </section>
@@ -872,7 +1031,7 @@ const App = () => {
               <p style={{ fontSize: '1.4rem', color: 'var(--text-muted)', marginBottom: '4rem', maxWidth: '700px', margin: '0 auto 4rem' }}>
                 Book a strategy call to discuss your growth bottlenecks and build a high-conversion roadmap.
               </p>
-              <div style={{ display: 'flex', gap: '1.5rem', justifyContent: 'center' }}>
+              <div className="cta-button-group">
                 <a href="https://calendar.app.google/UFdTwiyhE52yscFDA" target="_blank" rel="noopener noreferrer" className="btn btn-primary">
                   Book a Free Strategy Call
                 </a>
@@ -886,56 +1045,24 @@ const App = () => {
       </main>
 
       {/* Floating Actions */}
-      <aside style={{
-        position: 'fixed',
-        bottom: '2rem',
-        right: '2rem',
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '1rem',
-        zIndex: 10000
-      }}>
+      <aside className="floating-actions">
         <a 
           href="https://wa.me/918200290416"
           target="_blank"
           rel="noopener noreferrer"
-          className="floating-btn"
+          className="floating-btn fab-whatsapp"
           aria-label="Contact Vatsal on WhatsApp"
-          style={{
-            background: '#25D366',
-            color: 'white',
-            width: '60px',
-            height: '60px',
-            borderRadius: '50%',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            boxShadow: '0 10px 25px rgba(37, 211, 102, 0.4)',
-            transition: 'all 0.3s'
-          }}
         >
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
             <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
           </svg>
         </a>
         <a 
           href="tel:+918200290416"
-          className="floating-btn"
+          className="floating-btn fab-phone"
           aria-label="Call Vatsal Vadia"
-          style={{
-            background: 'var(--accent-primary)',
-            color: 'white',
-            width: '60px',
-            height: '60px',
-            borderRadius: '50%',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            boxShadow: '0 10px 25px rgba(99, 102, 241, 0.4)',
-            transition: 'all 0.3s'
-          }}
         >
-          <Phone size={28} />
+          <Phone size={22} />
         </a>
       </aside>
 
@@ -988,11 +1115,6 @@ const App = () => {
           </div>
         </div>
       </footer>
-      <style>{`
-        .floating-btn:hover {
-          transform: scale(1.1) translateY(-5px);
-        }
-      `}</style>
     </div>
   );
 };
