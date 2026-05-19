@@ -12,15 +12,15 @@ export default function Hero() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1,
-        delayChildren: 3.5, // After loader completes
+        staggerChildren: 0.05,
+        delayChildren: 1.5, // Match accelerated loader timeline
       },
     },
   };
 
   const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
+    hidden: { opacity: 0, y: 15 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
   };
 
   return (
@@ -41,20 +41,21 @@ export default function Hero() {
         >
           {/* Left Content */}
           <div className="flex flex-col">
-            <motion.div variants={itemVariants} className="inline-block border border-brand-border bg-brand-card/50 text-brand-gray font-body text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full w-max mb-8">
+            <div className="inline-block border border-brand-border bg-brand-card/50 text-brand-gray font-body text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full w-max mb-8">
               For Auto Transport Companies Only
-            </motion.div>
+            </div>
             
-            <motion.h1 variants={itemVariants} className="font-headline text-5xl md:text-7xl leading-[1.1] mb-6 text-brand-white">
+            {/* LCP CRITICAL PATH: Headline renders statically and instantly to maximize perceived speed and Lighthouse audit success */}
+            <h1 className="font-headline text-5xl md:text-7xl leading-[1.1] mb-6 text-brand-white">
               Stop Renting Shared Leads.<br />
               <span className="text-brand-orange">Build a Performance Marketing System That Books More Shipments.</span>
-            </motion.h1>
+            </h1>
             
-            <motion.p variants={itemVariants} className="font-body text-lg md:text-xl text-brand-gray mb-10 max-w-lg">
+            <p className="font-body text-lg md:text-xl text-brand-gray mb-10 max-w-lg">
               Lower cost per lead, improve quote-to-booking rates, and scale profitable auto transport campaigns with landing pages, paid ads, CRM automation, and conversion tracking.
-            </motion.p>
+            </p>
             
-            <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row gap-4">
               <button onClick={openModal} className="bg-brand-orange hover:bg-brand-orange-hover text-brand-white font-body text-sm font-bold px-8 py-4 rounded transition-all shadow-[0_0_20px_rgba(249,115,22,0.2)] hover:shadow-[0_0_30px_rgba(234,88,12,0.4)] flex items-center justify-center gap-2 group">
                 Audit My Auto Transport Lead System
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -63,11 +64,11 @@ export default function Hero() {
                 <Play className="w-4 h-4 text-brand-orange group-hover:scale-110 transition-transform" />
                 View Case Study
               </Link>
-            </motion.div>
+            </div>
           </div>
 
           {/* Right Dashboard UI */}
-          <motion.div variants={itemVariants} className="hidden lg:block relative">
+          <motion.div variants={itemVariants} className="hidden lg:block relative transform-gpu will-change-transform">
             <div className="bg-brand-card border border-brand-border rounded-xl shadow-2xl p-6 relative overflow-hidden">
               <div className="flex justify-between items-center mb-6 border-b border-brand-border pb-4">
                 <div className="text-brand-white font-body text-sm font-bold uppercase tracking-wider">Pipeline Velocity</div>
@@ -90,8 +91,8 @@ export default function Hero() {
                     key={i}
                     initial={{ width: "20%" }}
                     animate={{ width: "100%" }}
-                    transition={{ delay: 4 + i * 0.2, duration: 1, ease: "easeOut" }}
-                    className="flex items-center gap-4"
+                    transition={{ delay: 1.6 + i * 0.1, duration: 0.8, ease: "easeOut" }}
+                    className="flex items-center gap-4 transform-gpu will-change-[width]"
                   >
                     <div className="w-6 text-center text-brand-gray font-body font-bold text-sm">{i + 1}</div>
                     <div className={`flex-1 ${item.color} border ${item.border} p-3 rounded font-body text-sm font-medium ${item.text}`}>
@@ -104,8 +105,8 @@ export default function Hero() {
                 <motion.div 
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 5.2, duration: 0.5 }}
-                  className="flex items-center gap-4 pt-2"
+                  transition={{ delay: 2.2, duration: 0.4 }}
+                  className="flex items-center gap-4 pt-2 transform-gpu"
                 >
                   <div className="w-6 text-center text-brand-orange font-body font-extrabold text-sm">6</div>
                   <div className="flex-1 bg-brand-orange border border-brand-orange p-3 rounded font-body text-sm font-bold text-[#0A0F1E] flex justify-between items-center shadow-[0_0_20px_rgba(249,115,22,0.4)]">
@@ -120,7 +121,7 @@ export default function Hero() {
             <motion.div 
               animate={{ y: [0, -10, 0] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -right-8 top-12 bg-[#0D9488]/20 border border-[#0D9488]/40 backdrop-blur-md p-4 rounded-lg flex items-center gap-3 shadow-xl"
+              className="absolute -right-8 top-12 bg-[#0D9488]/20 border border-[#0D9488]/40 backdrop-blur-md p-4 rounded-lg flex items-center gap-3 shadow-xl transform-gpu"
             >
               <ShieldCheck className="w-6 h-6 text-[#0D9488]" />
               <div className="flex flex-col">

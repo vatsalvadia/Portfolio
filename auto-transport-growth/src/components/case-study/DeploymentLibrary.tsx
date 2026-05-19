@@ -5,7 +5,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { deployments } from "@/data/deployments";
 import { Deployment, DeploymentCategory } from "@/types/deployment";
 import DeploymentCard from "./DeploymentCard";
-import DeploymentSlidePanel from "./DeploymentSlidePanel";
+import dynamic from "next/dynamic";
+const DeploymentSlidePanel = dynamic(() => import("./DeploymentSlidePanel"), { ssr: false });
 import RevealSection from "@/components/RevealSection";
 import { Layers, Search, ChevronDown } from "lucide-react";
 import { useLenis } from "lenis/react";
@@ -186,11 +187,13 @@ export default function DeploymentLibrary() {
       </div>
 
       {/* Slide Panel Overlay */}
-      <DeploymentSlidePanel 
-        deployment={selectedDeployment} 
-        isOpen={!!selectedDeploymentId} 
-        onClose={() => setSelectedDeploymentId(null)} 
-      />
+      {selectedDeploymentId && (
+        <DeploymentSlidePanel 
+          deployment={selectedDeployment} 
+          isOpen={!!selectedDeploymentId} 
+          onClose={() => setSelectedDeploymentId(null)} 
+        />
+      )}
 
     </section>
   );

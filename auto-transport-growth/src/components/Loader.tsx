@@ -7,10 +7,10 @@ export default function Loader() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // 3 seconds total boot sequence
+    // 1.5 seconds total boot sequence for rapid interactive states
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 3000);
+    }, 1500);
     return () => clearTimeout(timer);
   }, []);
 
