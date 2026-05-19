@@ -1,6 +1,8 @@
 # dependencies
 node_modules/
 auto-transport-growth/node_modules/
+dist/
+dist-ssr/
 
 # next.js build outputs
 .next/
@@ -8,19 +10,31 @@ auto-transport-growth/.next/
 auto-transport-growth/out/
 auto-transport-growth/build/
 
-# misc
-.DS_Store
-*.pem
-
-# debug logs
+# Logs
+logs/
+*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
 
-# local env files
-.env*.local
-auto-transport-growth/.env*.local
+# misc
+.DS_Store
+*.pem
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
 
 # vercel
-.vercel
-auto-transport-growth/.vercel
+.vercel/
+auto-transport-growth/.vercel/
+
