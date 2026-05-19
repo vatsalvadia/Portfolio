@@ -1,0 +1,14 @@
+{
+  "redirects": [
+    {
+      "source": "/auto-transport-growth",
+      "destination": "https://auto.vatsalvadia.com",
+      "statusCode": 308
+    },
+    {
+      "source": "/auto-transport-growth/:path*",
+      "destination": "https://auto.vatsalvadia.com/:path*",
+      "statusCode": 308
+    }
+  ]
+}
