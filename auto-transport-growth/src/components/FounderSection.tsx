@@ -2,6 +2,7 @@
 
 import RevealSection from "./RevealSection";
 import { Quote } from "lucide-react";
+import Image from "next/image";
 
 export default function FounderSection() {
   return (
@@ -14,10 +15,12 @@ export default function FounderSection() {
           <div className="relative w-32 h-32 mx-auto mb-8">
             <div className="absolute inset-0 bg-brand-orange rounded-full blur-xl opacity-20" />
             <div className="w-full h-full rounded-full border-4 border-brand-border bg-brand-bg overflow-hidden relative grayscale hover:grayscale-0 transition-all duration-500">
-              <img 
+              <Image 
                 src="/images/founder-portrait.jpg" 
                 alt="Vatsal Vadia - Auto Transport Growth Systems" 
-                className="w-full h-full object-cover"
+                fill
+                unoptimized
+                className="object-cover"
               />
             </div>
             <div className="absolute -bottom-2 -right-2 bg-brand-orange text-brand-bg w-8 h-8 rounded-full flex items-center justify-center shadow-lg">
