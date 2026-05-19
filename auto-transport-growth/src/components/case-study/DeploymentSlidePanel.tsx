@@ -19,7 +19,7 @@ export default function DeploymentSlidePanel({ deployment, isOpen, onClose }: De
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
-      setActiveStep("01"); // Reset on open
+      setTimeout(() => setActiveStep("01"), 0); // Reset on open
     } else {
       document.body.style.overflow = "unset";
     }
@@ -213,7 +213,7 @@ export default function DeploymentSlidePanel({ deployment, isOpen, onClose }: De
                 <section id="section-05" className="bg-brand-bg border-l-4 border-brand-orange p-6 md:p-8 rounded-r-xl">
                   <h4 className="font-body text-sm font-bold text-brand-orange tracking-widest uppercase mb-4">Operator Insight</h4>
                   <p className="font-body text-lg text-brand-white leading-relaxed italic">
-                    "{deployment.operatorInsight}"
+                    &ldquo;{deployment.operatorInsight}&rdquo;
                   </p>
                 </section>
 

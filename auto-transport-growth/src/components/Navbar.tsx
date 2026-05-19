@@ -41,9 +41,9 @@ export default function Navbar() {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8">
-          <a href="/#services" className="font-body text-sm font-medium text-brand-gray hover:text-brand-white transition-colors">Services</a>
+          <Link href="/#services" className="font-body text-sm font-medium text-brand-gray hover:text-brand-white transition-colors">Services</Link>
           <Link href="/case-study" className="font-body text-sm font-medium text-brand-gray hover:text-brand-white transition-colors">Case Study</Link>
-          <a href="/#audit" className="font-body text-sm font-medium text-brand-gray hover:text-brand-white transition-colors">Audit</a>
+          <Link href="/#audit" className="font-body text-sm font-medium text-brand-gray hover:text-brand-white transition-colors">Audit</Link>
           
           <button onClick={openModal} className="bg-brand-orange hover:bg-brand-orange-hover text-brand-white font-body text-sm font-bold px-6 py-2.5 rounded transition-colors shadow-[0_0_15px_rgba(249,115,22,0.3)] hover:shadow-[0_0_25px_rgba(234,88,12,0.5)]">
             Get Free CPL Audit

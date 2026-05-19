@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useAuditModal } from "@/context/AuditModalContext";
-import { X, CalendarCheck, Lock, Unlock, ArrowRight, ShieldAlert, CheckCircle2, TrendingUp, AlertTriangle, Activity, AlertCircle, RefreshCw, BarChart2 } from "lucide-react";
+import { X, CalendarCheck, Lock, Unlock, ArrowRight, CheckCircle2, AlertTriangle, Activity, AlertCircle, RefreshCw, BarChart2 } from "lucide-react";
 
 type FunnelStep = 1 | 2 | 3 | 4 | 5 | 6;
 
@@ -42,15 +42,17 @@ export default function AuditFunnelModal() {
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
-      if (step === 6) setStep(1); // Reset on reopening after completion
+      if (step === 6) {
+        setTimeout(() => setStep(1), 0); // Reset on reopening after completion
+      }
     } else {
       document.body.style.overflow = "unset";
-      setShowExitIntent(false);
+      setTimeout(() => setShowExitIntent(false), 0);
     }
     return () => {
       document.body.style.overflow = "unset";
     };
-  }, [isOpen]);
+  }, [isOpen, step]);
 
   const handleCloseAttempt = () => {
     if (step === 5) {
@@ -711,7 +713,7 @@ export default function AuditFunnelModal() {
                       {/* What We'll Cover */}
                       <div className="bg-[#0A0F1E]/50 border border-brand-border rounded-xl p-5 text-left">
                         <div className="text-xs font-mono text-brand-gray uppercase tracking-widest border-b border-brand-border/60 pb-2 mb-3">
-                          What We'll Cover
+                          What We&apos;ll Cover
                         </div>
                         <ul className="space-y-2 text-xs text-brand-gray font-mono">
                           <li className="flex items-center gap-2">
@@ -798,7 +800,7 @@ export default function AuditFunnelModal() {
                   <div className="w-16 h-16 bg-red-500/10 rounded-full flex items-center justify-center mx-auto mb-6">
                     <AlertTriangle className="w-8 h-8 text-red-500 animate-bounce" />
                   </div>
-                  <h3 className="font-headline text-2xl text-brand-white mb-4 font-bold">Don't Lose Your Spot</h3>
+                  <h3 className="font-headline text-2xl text-brand-white mb-4 font-bold">Don&apos;t Lose Your Spot</h3>
                   <p className="text-brand-gray mb-8 text-sm">
                     Your Free $500 Audit + Strategy Session is currently reserved. If you leave now, your operator allocation slot will be released.
                   </p>

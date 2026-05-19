@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  basePath: "/auto-transport-growth",
+  reactStrictMode: true,
 };
 
 export default nextConfig;

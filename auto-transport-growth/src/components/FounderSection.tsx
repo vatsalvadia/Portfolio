@@ -31,7 +31,7 @@ export default function FounderSection() {
 
         <RevealSection variant="fadeUp" delay={0.2}>
           <p className="font-headline text-3xl md:text-4xl leading-tight text-brand-white mb-8">
-            "Built specifically for auto transport operators. We don't just build websites; we build growth infrastructure that protects your margins."
+            &ldquo;Built specifically for auto transport operators. We don&apos;t just build websites; we build growth infrastructure that protects your margins.&rdquo;
           </p>
           <div className="font-headline text-2xl text-[#0D9488] mb-1">Vatsal Vadia</div>
           <div className="font-body text-sm text-brand-gray font-bold uppercase tracking-widest">
