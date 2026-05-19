@@ -1,0 +1,465 @@
+import React, { useState, useEffect } from 'react';
+import { 
+  TrendingUp, 
+  Search, 
+  BarChart3, 
+  Target, 
+  Mail, 
+  Linkedin, 
+  Phone, 
+  Globe, 
+  Award, 
+  Users, 
+  Zap, 
+  CheckCircle2, 
+  ArrowUpRight, 
+  Layout, 
+  Cpu, 
+  ExternalLink,
+  ChevronRight,
+  Monitor,
+  Database,
+  Bot,
+  MessageSquare,
+  PhoneCall,
+  Activity,
+  Briefcase
+} from 'lucide-react';
+
+const App = () => {
+  const [activeTab, setActiveTab] = useState('all');
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const stats = [
+    { label: 'Managed Budget', value: '$1.5M', icon: <BarChart3 className="text-blue-400" /> },
+    { label: 'Avg ROAS', value: '3.5x', icon: <TrendingUp className="text-emerald-400" /> },
+    { label: 'Industries', value: '35+', icon: <Briefcase className="text-purple-400" /> },
+    { label: 'Exp. Years', value: '8+', icon: <Award className="text-amber-400" /> },
+  ];
+
+  const industries = [
+    "Healthcare", "SaaS / IT", "Real Estate", "Manufacturing", "Finance / Banking", 
+    "Education", "Automobile", "Food & Beverage", "D2C / E-commerce", "Dental", 
+    "Physiotherapy", "Skin Care", "Hair Care", "Makeup", "Steel Buildings", 
+    "Travel", "Insurance", "Digital Agencies", "Hospitality", "Legal"
+  ];
+
+  const categories = [
+    { id: 'all', name: 'All Specialties' },
+    { id: 'seo', name: 'SEO & Ranking' },
+    { id: 'performance', name: 'Performance Ads' },
+    { id: 'automation', name: 'AI & Automation' }
+  ];
+
+  const projects = [
+    {
+      id: 1,
+      category: 'performance',
+      title: 'Metal Pro Building Growth',
+      metrics: '$1.5M Budget | 3.5x ROAS',
+      description: 'Engineered the entire marketing & sales ecosystem from scratch for a US steel building leader. Implemented a call-first strategy that maximized conversion velocity.',
+      tags: ['Google Ads', 'Meta Ads', 'PMax', 'RevOps']
+    },
+    {
+      id: 2,
+      category: 'automation',
+      title: 'AI Growth Infrastructure',
+      metrics: '40% Efficiency Gain',
+      description: 'Deployed automated AI chatbots and AI-driven calling systems for lead qualification. Built automated website creation workflows for rapid scaling.',
+      tags: ['AI Calling', 'n8n', 'Chatbots', 'GoHighLevel']
+    },
+    {
+      id: 3,
+      category: 'seo',
+      title: 'Global Search Dominance',
+      metrics: '72% Traffic Lift',
+      description: 'Ranked high-competition keywords #1 across USA, Canada, and Australia. Focused on healthcare (acne, psoriasis) and travel niches.',
+      tags: ['Local SEO', 'Keyword Strategy', 'GA4']
+    },
+    {
+      id: 4,
+      category: 'automation',
+      title: 'GHL CRM Architecture',
+      metrics: '25% Higher Conv. Rate',
+      description: 'Architected complex pipelines with custom lead scoring, automated follow-ups, and sales team routing logic for a US-based startup.',
+      tags: ['CRM Setup', 'Lead Scoring', 'SOP Design']
+    }
+  ];
+
+  const rankings = [
+    { kw: 'Diamond Buyers', loc: 'HK/US', pos: '#1', client: 'Diamond ICQ' },
+    { kw: 'Acne Treatment Specialist', loc: 'USA', pos: '#1', client: 'Safe Health Center' },
+    { kw: 'Truck Driving School', loc: 'Canada', pos: '#1', client: 'Cameron Driver' },
+    { kw: 'Ceramic Coating', loc: 'Canada', pos: '#1', client: 'Ceramic Pro' },
+    { kw: 'Kneelength Swimsuits', loc: 'Australia', pos: '#1', client: 'Nova Swimwear' },
+  ];
+
+  return (
+    <div className="min-h-screen bg-slate-950 text-slate-100 font-sans selection:bg-indigo-500/30 selection:text-white">
+      {/* Dynamic Background */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] bg-indigo-500/10 blur-[120px] rounded-full" />
+        <div className="absolute top-[20%] -right-[10%] w-[30%] h-[30%] bg-purple-500/10 blur-[120px] rounded-full" />
+      </div>
+
+      {/* Navigation */}
+      <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-slate-950/80 backdrop-blur-md border-b border-slate-800 py-3' : 'bg-transparent py-6'}`}>
+        <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
+          <div className="flex items-center gap-3 group cursor-pointer">
+            <div className="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center font-black text-xl shadow-lg shadow-indigo-500/20 group-hover:scale-110 transition-transform">V</div>
+            <div>
+              <span className="font-bold text-lg tracking-tight block leading-none">VATSAL VADIA</span>
+              <span className="text-[10px] text-indigo-400 uppercase tracking-widest font-bold">Growth Operations Lead</span>
+            </div>
+          </div>
+          <div className="hidden md:flex gap-8 items-center text-sm font-semibold text-slate-400">
+            <a href="#services" className="hover:text-white transition-colors">Services</a>
+            <a href="#work" className="hover:text-white transition-colors">Portfolio</a>
+            <a href="#experience" className="hover:text-white transition-colors">Journey</a>
+            <a href="mailto:vatsalvadiaofficial@gmail.com" className="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2.5 rounded-full transition-all shadow-lg shadow-indigo-600/30">Hire Me</a>
+          </div>
+        </div>
+      </nav>
+
+      {/* Hero Section */}
+      <section className="pt-44 pb-20 px-6 relative z-10">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-16">
+          <div className="flex-1 space-y-10">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-bold uppercase tracking-wider">
+              <Zap size={14} className="fill-current" /> $1.5M Managed Portfolio
+            </div>
+            <h1 className="text-6xl md:text-8xl font-black tracking-tighter leading-[0.9]">
+              DOMINATE THE <br/>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400">DIGITAL MARKET.</span>
+            </h1>
+            <p className="text-xl text-slate-400 max-w-2xl leading-relaxed font-medium">
+              8+ years of global experience driving performance-led growth. I architect scalable marketing systems that turn clicks into revenue through PPC, SEO, and AI Automation.
+            </p>
+            <div className="flex flex-wrap gap-6">
+              <div className="flex items-center gap-3 text-slate-300 bg-slate-900/50 px-4 py-2 rounded-2xl border border-slate-800">
+                <CheckCircle2 size={18} className="text-emerald-500" />
+                <span className="font-semibold">3.5x Avg ROAS</span>
+              </div>
+              <div className="flex items-center gap-3 text-slate-300 bg-slate-900/50 px-4 py-2 rounded-2xl border border-slate-800">
+                <CheckCircle2 size={18} className="text-indigo-500" />
+                <span className="font-semibold">35+ Industries</span>
+              </div>
+            </div>
+            <div className="flex gap-6 pt-4">
+              <a href="mailto:vatsalvadiaofficial@gmail.com" className="flex items-center gap-3 bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-5 rounded-2xl font-bold transition-all hover:scale-[1.02] active:scale-95 shadow-2xl shadow-indigo-600/20">
+                Discuss Your Growth <ChevronRight size={20} />
+              </a>
+              <a href="https://www.linkedin.com/in/vatsal-vadia-9947011b4" target="_blank" className="flex items-center gap-3 bg-slate-800 hover:bg-slate-700 text-white px-8 py-5 rounded-2xl font-bold transition-all border border-slate-700">
+                <Linkedin size={20} />
+              </a>
+            </div>
+          </div>
+          
+          <div className="flex-1 relative">
+            <div className="absolute inset-0 bg-gradient-to-tr from-indigo-500 to-purple-500 blur-[80px] opacity-20 animate-pulse" />
+            <div className="relative z-10 w-full max-w-md mx-auto aspect-square rounded-[3rem] overflow-hidden border-2 border-slate-800 bg-slate-900 shadow-2xl">
+              <div className="w-full h-full bg-slate-800 flex items-center justify-center">
+                 <img src="https://via.placeholder.com/600x600?text=Vatsal+Vadia" alt="Vatsal Vadia" className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" />
+              </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-60" />
+              <div className="absolute bottom-8 left-8 right-8 p-6 bg-slate-950/80 backdrop-blur-md rounded-2xl border border-slate-800">
+                <div className="flex items-center justify-between mb-4">
+                  <span className="text-xs font-bold text-slate-500 uppercase">Live Performance</span>
+                  <div className="flex gap-1">
+                    <div className="w-1 h-3 bg-indigo-500 animate-bounce" />
+                    <div className="w-1 h-3 bg-indigo-500 animate-bounce delay-75" />
+                    <div className="w-1 h-3 bg-indigo-500 animate-bounce delay-150" />
+                  </div>
+                </div>
+                <div className="flex items-center gap-4">
+                   <div className="text-3xl font-black text-emerald-400">+72%</div>
+                   <div className="text-sm font-semibold text-slate-300">Organic Visibility Increase</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Stats Board */}
+      <section className="py-12 px-6">
+        <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6">
+          {stats.map((stat, i) => (
+            <div key={i} className="group bg-slate-900/40 border border-slate-800 p-10 rounded-[2.5rem] text-center transition-all hover:bg-slate-900/60 hover:border-indigo-500/30">
+              <div className="flex justify-center mb-6 transform group-hover:scale-110 transition-transform">{stat.icon}</div>
+              <div className="text-5xl font-black mb-1 tracking-tight">{stat.value}</div>
+              <div className="text-xs font-bold text-slate-500 uppercase tracking-[0.2em]">{stat.label}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Industries Slider (Marquee effect simulation) */}
+      <section className="py-24 border-y border-slate-900 overflow-hidden">
+        <div className="text-center mb-12">
+          <span className="text-indigo-400 font-bold uppercase tracking-widest text-xs">Proven Authority Across</span>
+          <h3 className="text-3xl font-bold mt-2">35+ Industries & Verticals</h3>
+        </div>
+        <div className="flex flex-wrap justify-center gap-3 px-6 max-w-6xl mx-auto">
+          {industries.map((ind, i) => (
+            <span key={i} className="px-5 py-2.5 rounded-full bg-slate-900 border border-slate-800 text-sm font-semibold text-slate-400 hover:text-white hover:border-indigo-500/50 transition-all cursor-default">
+              {ind}
+            </span>
+          ))}
+        </div>
+      </section>
+
+      {/* Services / Pillars */}
+      <section id="services" className="py-32 px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
+            <div className="space-y-4">
+              <h2 className="text-5xl md:text-6xl font-black tracking-tight">Full-Stack <br/> Growth Engine.</h2>
+              <p className="text-slate-400 max-w-md text-lg">Comprehensive digital marketing services backed by 8 years of data and automation.</p>
+            </div>
+            <div className="grid grid-cols-2 gap-4 w-full md:w-auto">
+              <div className="bg-slate-900 p-6 rounded-3xl border border-slate-800">
+                <div className="text-2xl font-bold text-indigo-400">SEO</div>
+                <div className="text-xs text-slate-500 font-bold uppercase mt-1">Global & Local</div>
+              </div>
+              <div className="bg-slate-900 p-6 rounded-3xl border border-slate-800">
+                <div className="text-2xl font-bold text-purple-400">PPC</div>
+                <div className="text-xs text-slate-500 font-bold uppercase mt-1">Performance Max</div>
+              </div>
+            </div>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              { 
+                title: 'Performance Marketing', 
+                desc: 'Strategic management of $1.5M budgets. Expertise in high-ROI Meta & Google Ad campaigns across the US and Canada.',
+                icon: <Target className="text-indigo-400" size={32} />,
+                features: ['A/B Testing', 'CPA Optimization', 'Retargeting']
+              },
+              { 
+                title: 'Search Dominance', 
+                desc: 'White-hat SEO frameworks that have pushed 100+ keywords to Page #1. Expert in healthcare and complex B2B niches.',
+                icon: <Globe className="text-purple-400" size={32} />,
+                features: ['Topical Clusters', 'Local SEO', 'GA4 Analytics']
+              },
+              { 
+                title: 'AI & Ops Automation', 
+                desc: 'Built AI-driven calling systems and automated chatbots that reduced turnaround by 40% and improved lead quality.',
+                icon: <Bot className="text-emerald-400" size={32} />,
+                features: ['AI Calling', 'Automated Sites', 'CRM Workflows']
+              }
+            ].map((pillar, i) => (
+              <div key={i} className="relative p-10 rounded-[3rem] bg-slate-900/30 border border-slate-800 hover:border-slate-700 transition-all group overflow-hidden">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-600/5 blur-3xl rounded-full" />
+                <div className="mb-8 p-5 bg-slate-800/50 rounded-2xl w-fit group-hover:bg-indigo-600 transition-all">{pillar.icon}</div>
+                <h3 className="text-2xl font-bold mb-4">{pillar.title}</h3>
+                <p className="text-slate-400 leading-relaxed mb-8">{pillar.desc}</p>
+                <div className="space-y-3">
+                  {pillar.features.map(f => (
+                    <div key={f} className="flex items-center gap-3 text-xs font-bold text-slate-200">
+                      <div className="w-1.5 h-1.5 bg-indigo-500 rounded-full" /> {f}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Portfolio Showcase */}
+      <section id="work" className="py-32 px-6 bg-slate-900/10">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-20 space-y-4">
+            <h2 className="text-5xl md:text-6xl font-black">Success Stories.</h2>
+            <div className="flex justify-center gap-4 bg-slate-900 p-1 rounded-2xl w-fit mx-auto border border-slate-800">
+              {categories.map(cat => (
+                <button
+                  key={cat.id}
+                  onClick={() => setActiveTab(cat.id)}
+                  className={`px-6 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all ${activeTab === cat.id ? 'bg-indigo-600 text-white shadow-lg' : 'text-slate-500 hover:text-white'}`}
+                >
+                  {cat.name}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-10">
+            {projects.filter(p => activeTab === 'all' || p.category === activeTab).map(project => (
+              <div key={project.id} className="group relative bg-slate-900 border border-slate-800 rounded-[3rem] p-10 hover:border-indigo-500/40 transition-all">
+                <div className="flex justify-between items-start mb-8">
+                  <div>
+                    <div className="text-indigo-400 font-black text-xl mb-1">{project.metrics}</div>
+                    <h3 className="text-3xl font-bold">{project.title}</h3>
+                  </div>
+                  <div className="bg-slate-800 p-4 rounded-2xl group-hover:bg-indigo-600 transition-colors">
+                    <ArrowUpRight size={24} />
+                  </div>
+                </div>
+                <p className="text-slate-400 text-lg leading-relaxed mb-10">{project.description}</p>
+                <div className="flex flex-wrap gap-2">
+                  {project.tags.map(tag => (
+                    <span key={tag} className="text-[10px] px-4 py-1.5 bg-slate-800 rounded-full border border-slate-700 text-slate-300 font-bold uppercase tracking-widest">{tag}</span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Table for SEO Ranking detail */}
+          <div className="mt-20 bg-slate-900/50 border border-slate-800 rounded-[3rem] p-8 md:p-16">
+            <div className="flex items-center gap-4 mb-12">
+              <div className="p-4 bg-indigo-600/10 rounded-2xl text-indigo-400"><Search size={28} /></div>
+              <div>
+                <h3 className="text-3xl font-black">Search Performance Dashboard</h3>
+                <p className="text-slate-500 font-medium italic">Verified organic positions across competitive global markets.</p>
+              </div>
+            </div>
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead>
+                  <tr className="border-b border-slate-800 text-slate-500 text-[10px] font-black uppercase tracking-[0.2em]">
+                    <th className="pb-6 text-left">Keyword Focus</th>
+                    <th className="pb-6 text-left">Geo-Target</th>
+                    <th className="pb-6 text-left">SERP Rank</th>
+                    <th className="pb-6 text-right">Industry</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-800/50">
+                  {rankings.map((r, i) => (
+                    <tr key={i} className="group hover:bg-white/5 transition-colors">
+                      <td className="py-6 font-bold text-lg text-slate-200">{r.kw}</td>
+                      <td className="py-6 text-slate-400 font-medium">{r.loc}</td>
+                      <td className="py-6">
+                        <div className="flex items-center gap-2 text-emerald-400 font-black">
+                          <TrendingUp size={16} /> {r.pos}
+                        </div>
+                      </td>
+                      <td className="py-6 text-right text-slate-500 font-bold">{r.client}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Career Timeline */}
+      <section id="experience" className="py-32 px-6">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-24">
+            <h2 className="text-5xl font-black mb-4">The Journey.</h2>
+            <div className="h-1 w-24 bg-indigo-600 mx-auto rounded-full" />
+          </div>
+          
+          <div className="space-y-16">
+            {[
+              {
+                role: 'Digital Marketing Director / Growth Lead',
+                company: 'Metal Pro Building (US Startup)',
+                period: 'Jul 2025 - Jan 2026',
+                details: [
+                  'Built the entire marketing, sales, and automation ecosystem from scratch for a US-based steel leader.',
+                  'Architected and deployed GoHighLevel CRM infrastructure including custom lead scoring & routing.',
+                  'Managed $1.5M budget achieving a 3.5x average ROAS.'
+                ]
+              },
+              {
+                role: 'Digital Marketing Consultant',
+                company: 'WSI',
+                period: 'Apr 2023 - Jun 2025',
+                details: [
+                  'Led operations for 10+ global clients across Healthcare, Travel, and Finance.',
+                  'Managed a team of 10+ professionals across SEO, PPC, and Content.',
+                  'Delivered a 30% increase in customer engagement for flagship accounts.'
+                ]
+              },
+              {
+                role: 'Digital Marketing Specialist',
+                company: 'Blub World',
+                period: 'Jan 2019 - Mar 2023',
+                details: [
+                  'Scaled organic reach by 60% through content-led growth strategies.',
+                  'Reduced CPA by 22% through advanced audience segmentation.',
+                  'Conceptualized social media campaigns resulting in 45% engagement surge.'
+                ]
+              }
+            ].map((exp, i) => (
+              <div key={i} className="group flex gap-10">
+                <div className="hidden md:flex flex-col items-center">
+                  <div className="w-12 h-12 bg-slate-900 border border-slate-800 rounded-2xl flex items-center justify-center font-bold text-indigo-400">{i+1}</div>
+                  <div className="flex-1 w-px bg-slate-800 mt-4" />
+                </div>
+                <div className="flex-1 bg-slate-900/50 border border-slate-800 p-10 rounded-[3rem] group-hover:border-indigo-500/30 transition-all">
+                  <div className="flex flex-col md:flex-row justify-between mb-6 gap-2">
+                    <div>
+                      <h3 className="text-2xl font-bold">{exp.role}</h3>
+                      <div className="text-indigo-400 font-bold uppercase tracking-wider text-xs mt-1">{exp.company}</div>
+                    </div>
+                    <div className="text-slate-500 text-sm font-bold">{exp.period}</div>
+                  </div>
+                  <ul className="space-y-4">
+                    {exp.details.map((detail, idx) => (
+                      <li key={idx} className="flex gap-4 text-slate-400 text-sm leading-relaxed">
+                        <CheckCircle2 size={16} className="text-indigo-500 shrink-0 mt-0.5" /> {detail}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-32 px-6">
+        <div className="max-w-6xl mx-auto bg-gradient-to-br from-indigo-600 to-purple-700 rounded-[4rem] p-12 md:p-24 text-center space-y-10 relative overflow-hidden shadow-2xl shadow-indigo-600/30">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 blur-[100px] rounded-full -translate-y-1/2 translate-x-1/2" />
+          <h2 className="text-5xl md:text-7xl font-black tracking-tight text-white relative z-10 leading-[0.9]">
+            READY TO SCALE <br/> YOUR REVENUE?
+          </h2>
+          <p className="text-white/80 text-xl max-w-2xl mx-auto font-medium relative z-10">
+            Let's discuss how my experience in $1.5M budget management and AI-driven operations can help your business dominate its niche.
+          </p>
+          <div className="flex flex-col md:flex-row justify-center gap-6 relative z-10 pt-4">
+            <a href="mailto:vatsalvadiaofficial@gmail.com" className="bg-white text-indigo-600 px-10 py-5 rounded-2xl font-black text-lg hover:scale-105 transition-all shadow-2xl flex items-center justify-center gap-3">
+              <Mail /> Get In Touch
+            </a>
+            <a href="tel:+918200290416" className="bg-slate-900/40 backdrop-blur-md text-white px-10 py-5 rounded-2xl font-black text-lg hover:scale-105 transition-all border border-white/20 flex items-center justify-center gap-3">
+              <PhoneCall /> +91-8200290416
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="py-20 px-6 border-t border-slate-900">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-10">
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 bg-slate-800 rounded-lg flex items-center justify-center font-black text-sm">V</div>
+            <span className="font-bold text-sm tracking-widest text-slate-500 uppercase">Vatsal Vadia</span>
+          </div>
+          <div className="text-slate-600 text-xs font-bold uppercase tracking-widest">
+            © 2026 Growth Operations & Digital Performance
+          </div>
+          <div className="flex gap-8">
+            <a href="https://www.linkedin.com/in/vatsal-vadia-9947011b4" className="text-slate-500 hover:text-white transition-colors"><Linkedin size={20} /></a>
+            <a href="mailto:vatsalvadiaofficial@gmail.com" className="text-slate-500 hover:text-white transition-colors"><Mail size={20} /></a>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+};
+
+export default App;
