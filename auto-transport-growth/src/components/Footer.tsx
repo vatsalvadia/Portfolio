@@ -60,6 +60,11 @@ export default function Footer() {
                 <a href="#" className="font-body text-sm hover:text-brand-orange transition-colors">Audit</a>
               </div>
               <div className="flex flex-col gap-4">
+                <span className="font-body text-xs font-bold text-brand-white uppercase tracking-widest">Industry</span>
+                <a href="https://safer.fmcsa.dot.gov/" target="_blank" rel="noopener noreferrer" className="font-body text-sm hover:text-brand-orange transition-colors flex items-center gap-1">FMCSA SAFER Registry</a>
+                <a href="https://www.fmcsa.dot.gov/" target="_blank" rel="noopener noreferrer" className="font-body text-sm hover:text-brand-orange transition-colors flex items-center gap-1">USDOT Portal</a>
+              </div>
+              <div className="flex flex-col gap-4">
                 <span className="font-body text-xs font-bold text-brand-white uppercase tracking-widest">Legal</span>
                 <a href="#" className="font-body text-sm hover:text-brand-white transition-colors">Privacy Policy</a>
                 <a href="#" className="font-body text-sm hover:text-brand-white transition-colors">Terms of Service</a>
