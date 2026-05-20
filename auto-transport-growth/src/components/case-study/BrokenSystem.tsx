@@ -2,6 +2,7 @@
 
 import RevealSection from "@/components/RevealSection";
 import { AlertOctagon, TrendingDown, Users, PhoneMissed, DollarSign, ArrowDownToLine } from "lucide-react";
+import Image from "next/image";
 
 export default function BrokenSystem() {
   const problems = [
@@ -45,36 +46,21 @@ export default function BrokenSystem() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center max-w-5xl mx-auto">
           {/* Broken Funnel Visual */}
           <RevealSection variant="slideLeft" delay={0.2} className="relative w-full aspect-square max-w-md mx-auto lg:mx-0">
-            <div className="absolute inset-0 flex flex-col items-center justify-center gap-4">
-              {/* Top Funnel */}
-              <div className="w-full h-16 border-2 border-brand-gray/30 border-b-transparent rounded-t-full relative">
-                <div className="absolute -top-6 left-1/2 -translate-x-1/2 flex gap-4 text-brand-gray/50 whitespace-nowrap font-mono text-xs">
-                  <span>Shared Traffic</span>
-                  <span>Old SEO</span>
-                  <span>Cold Calls</span>
-                </div>
-              </div>
+            <div className="relative w-full h-full rounded-xl overflow-hidden border border-brand-border bg-brand-card/30 p-2 shadow-2xl group hover:border-red-500/20 transition-all duration-500">
+              <div className="absolute inset-0 bg-gradient-to-t from-red-950/10 to-transparent opacity-50 pointer-events-none z-10" />
+              <Image 
+                src="/images/leaky-pipeline.png"
+                alt="High-Tech Leaky Lead Funnel Diagram"
+                fill
+                className="object-cover rounded-lg group-hover:scale-105 transition-transform duration-700"
+                sizes="(max-w-md) 100vw, 448px"
+                priority
+              />
               
-              {/* Funnel Body with leaks */}
-              <div className="w-[80%] h-32 border-x-2 border-brand-gray/30 relative flex items-center justify-center bg-brand-card/20">
-                {/* Leaks */}
-                <div className="absolute -left-12 top-4 flex items-center gap-2 text-red-500 font-mono text-xs animate-pulse">
-                  <ArrowDownToLine className="w-4 h-4 rotate-90" />
-                  Dropoff
-                </div>
-                <div className="absolute -right-16 bottom-4 flex items-center gap-2 text-red-500 font-mono text-xs animate-pulse" style={{ animationDelay: '0.5s' }}>
-                  Competitors
-                  <ArrowDownToLine className="w-4 h-4 -rotate-90" />
-                </div>
-                
-                <span className="font-headline text-2xl text-brand-gray/30 text-center">No Automation<br/>System</span>
-              </div>
-              
-              {/* Funnel Bottom */}
-              <div className="w-[40%] h-16 border-2 border-brand-gray/30 border-t-transparent rounded-b-full relative flex items-center justify-center bg-brand-card/20">
-                <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-red-400 font-headline text-lg whitespace-nowrap">
-                  Low Booking Volume
-                </div>
+              {/* Overlay HUD Indicator for premium telemetry look */}
+              <div className="absolute top-4 left-4 right-4 flex justify-between items-center bg-brand-bg/85 backdrop-blur-sm border border-brand-border/40 px-3 py-1.5 rounded text-[10px] font-mono text-brand-gray z-20">
+                <span>PIPELINE: UNMANAGED</span>
+                <span className="text-red-400 animate-pulse font-bold">WARNING: LEAKAGE DETECTED</span>
               </div>
             </div>
           </RevealSection>
