@@ -14,7 +14,6 @@ interface TeamMember {
   experience: string;
   specialty: string;
   links: {
-    linkedin?: string;
     github?: string;
   };
   icon: React.ReactNode;
@@ -30,9 +29,7 @@ export default function TeamSection() {
       badges: ["Founder", "Growth Strategy", "10+ Yrs Exp"],
       experience: "10+ Years",
       specialty: "Growth Infrastructure & Ads",
-      links: {
-        linkedin: "https://linkedin.com",
-      },
+      links: {},
       icon: <Award className="w-5 h-5 text-brand-orange" />,
     },
     {
@@ -44,7 +41,6 @@ export default function TeamSection() {
       experience: "6+ Years",
       specialty: "High-Perf Engineering & CI/CD",
       links: {
-        linkedin: "https://linkedin.com",
         github: "https://github.com",
       },
       icon: <Cpu className="w-5 h-5 text-teal-400" />,
@@ -57,9 +53,7 @@ export default function TeamSection() {
       badges: ["Cloud Systems", "AWS/GCP", "4+ Yrs Exp"],
       experience: "4+ Years",
       specialty: "Distributed Systems & Cloud Scale",
-      links: {
-        linkedin: "https://linkedin.com",
-      },
+      links: {},
       icon: <Cpu className="w-5 h-5 text-brand-orange" />,
     },
     {
@@ -70,9 +64,7 @@ export default function TeamSection() {
       badges: ["UX/UI Design", "Creative Lead", "Conversion"],
       experience: "Design Master",
       specialty: "Visual Trust & Conversion Funnels",
-      links: {
-        linkedin: "https://linkedin.com",
-      },
+      links: {},
       icon: <Sparkles className="w-5 h-5 text-teal-400" />,
     },
   ];
@@ -174,19 +166,6 @@ export default function TeamSection() {
                         {member.specialty}
                       </span>
                       <div className="flex items-center gap-2">
-                        {member.links.linkedin && (
-                          <a
-                            href={member.links.linkedin}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="hover:text-brand-orange transition-colors p-1"
-                            title="LinkedIn"
-                          >
-                            <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                              <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                            </svg>
-                          </a>
-                        )}
                         {member.links.github && (
                           <a
                             href={member.links.github}
