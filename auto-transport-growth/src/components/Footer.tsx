@@ -1,7 +1,7 @@
 "use client";
 
 import RevealSection from "./RevealSection";
-import { ArrowRight, Phone, Mail } from "lucide-react";
+import { ArrowRight, Mail } from "lucide-react";
 import { useAuditModal } from "@/context/AuditModalContext";
 
 export default function Footer() {
@@ -26,10 +26,6 @@ export default function Footer() {
                 Audit My Auto Transport Lead System
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </button>
-              <a href="tel:+918200290416" className="bg-[#1e293b] hover:bg-brand-border text-brand-white font-body text-sm font-bold px-8 py-4 rounded transition-colors flex items-center gap-2 hidden md:flex">
-                <Phone className="w-4 h-4" />
-                Call Now: +91 8200290416
-              </a>
               <a href="mailto:work@vatsalvadia.com" className="text-brand-gray hover:text-brand-white font-body text-sm font-bold px-8 py-4 rounded transition-colors flex items-center gap-2 hidden md:flex border border-transparent hover:border-brand-border">
                 <Mail className="w-4 h-4" />
                 work@vatsalvadia.com
@@ -80,13 +76,10 @@ export default function Footer() {
       </footer>
 
       {/* Sticky Mobile CTA */}
-      <div className="md:hidden fixed bottom-0 left-0 w-full bg-brand-bg border-t border-brand-border p-4 flex gap-4 z-50 shadow-[0_-10px_20px_rgba(10,15,30,0.8)]">
+      <div className="md:hidden fixed bottom-0 left-0 w-full bg-brand-bg border-t border-brand-border p-4 flex z-50 shadow-[0_-10px_20px_rgba(10,15,30,0.8)]">
         <button onClick={openModal} className="flex-1 bg-brand-orange text-brand-white font-body text-sm font-bold py-3.5 rounded shadow-[0_0_15px_rgba(249,115,22,0.3)]">
           Free Ads Audit
         </button>
-        <a href="tel:+918200290416" className="flex-1 bg-[#1e293b] text-brand-white font-body text-sm font-bold py-3.5 rounded flex items-center justify-center gap-2">
-          <Phone className="w-4 h-4" /> Call
-        </a>
       </div>
     </>
   );

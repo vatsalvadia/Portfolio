@@ -1,7 +1,7 @@
 "use client";
 
 import RevealSection from "@/components/RevealSection";
-import { ArrowRight, Phone, MessageCircle } from "lucide-react";
+import { ArrowRight, MessageCircle } from "lucide-react";
 import { useAuditModal } from "@/context/AuditModalContext";
 
 export default function CaseStudyCTA() {
@@ -28,11 +28,6 @@ export default function CaseStudyCTA() {
               Get My Free Audit
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </button>
-
-            {/* Option 2: Phone Call */}
-            <a href="tel:+918200290416" className="w-full md:w-auto bg-[#0D9488]/10 hover:bg-[#0D9488]/20 border border-[#0D9488]/30 text-[#0D9488] font-body text-sm font-bold px-8 py-4 rounded transition-colors flex items-center justify-center gap-2">
-              <Phone className="w-4 h-4" /> +91 8200290416
-            </a>
             
             {/* Option 3: WhatsApp */}
             <a href="https://wa.me/918200290416" target="_blank" rel="noopener noreferrer" className="w-full md:w-auto bg-[#25D366]/10 hover:bg-[#25D366]/20 border border-[#25D366]/30 text-[#25D366] font-body text-sm font-bold px-8 py-4 rounded transition-colors flex items-center justify-center gap-2">
