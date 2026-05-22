@@ -131,6 +131,137 @@ export default function Hero() {
             </motion.div>
           </motion.div>
         </motion.div>
+        
+        {/* Truck Animation for Desktop (>=900px) */}
+        <div className="hidden min-[900px]:block absolute bottom-0 left-6 right-6 h-48 z-0 pointer-events-none">
+          {/* Thin orange route line */}
+          <div className="absolute bottom-[24px] left-0 w-full h-[1.5px] bg-gradient-to-r from-transparent via-brand-orange/30 to-transparent" />
+          
+          {/* Animated Carrier Container */}
+          <motion.div
+            initial={{ left: "100%" }}
+            animate={{ left: "45%" }} // Stop perfectly in the gap between columns
+            transition={{ 
+              delay: 1.8, 
+              duration: 4.2, 
+              ease: "easeOut" 
+            }}
+            className="absolute bottom-0 flex flex-col items-center w-[280px] select-none"
+          >
+            {/* Glassmorphic Notification Card (fades/pops in after truck stops) */}
+            <motion.div
+              initial={{ opacity: 0, y: 15, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ delay: 6.2, duration: 0.5, ease: "easeOut" }}
+              className="mb-3 bg-brand-card/90 backdrop-blur-md border border-brand-orange/20 p-3 rounded-xl shadow-[0_0_30px_rgba(249,115,22,0.12)] w-[230px] text-left pointer-events-auto"
+            >
+              {/* Pulsing Status dot & header */}
+              <div className="flex items-center justify-between mb-1.5">
+                <span className="text-[9px] font-mono text-brand-orange uppercase tracking-wider font-extrabold flex items-center gap-1.5">
+                  <span className="w-1 h-1 rounded-full bg-brand-orange animate-ping" />
+                  New Shipment Lead
+                </span>
+                <span className="text-[8px] font-mono text-brand-gray font-bold">12s ago</span>
+              </div>
+              <div className="font-headline text-sm text-brand-white mb-1">Dallas, TX → Miami, FL</div>
+              <div className="text-[11px] font-body text-brand-gray flex justify-between items-center">
+                <span>2021 Toyota Camry</span>
+                <span className="text-[8px] font-mono bg-brand-orange/10 text-brand-orange px-1.5 py-0.5 rounded font-bold uppercase">Dispatched</span>
+              </div>
+            </motion.div>
+
+            {/* Truck Body Wrapper */}
+            <div className="relative">
+              {/* Subtle orange neon glow under the carrier wheels */}
+              <div className="absolute -bottom-1 left-5 right-5 h-1.5 bg-brand-orange/30 rounded-full blur-md" />
+              
+              {/* Clean vector-detailed inline SVG of modern aerodynamic car carrier truck */}
+              <svg 
+                width="220" 
+                height="72" 
+                viewBox="0 0 260 85" 
+                fill="none" 
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                {/* Main Structural Frame */}
+                <rect x="74" y="55" width="155" height="6" rx="2" fill="#475569" />
+                <rect x="22" y="55" width="52" height="6" rx="2" fill="#334155" />
+                
+                {/* Vertical Support Trusses */}
+                <path d="M 74 55 L 78 22 L 84 22 L 80 55 Z" fill="#64748B" />
+                <path d="M 128 55 L 140 22 L 146 22 L 134 55 Z" fill="#475569" />
+                <path d="M 182 55 L 194 22 L 200 22 L 188 55 Z" fill="#64748B" />
+                <path d="M 218 55 L 218 22 L 224 22 L 224 55 Z" fill="#334155" />
+                
+                {/* Upper Deck Platform */}
+                <rect x="76" y="18" width="148" height="4" rx="1" fill="#475569" />
+                
+                {/* Aerodynamic Cab Body */}
+                <rect x="18" y="26" width="52" height="29" fill="#FFFFFF" />
+                <path d="M 18 26 Q 48 22 66 32 L 70 55 L 18 55 Z" fill="#FFFFFF" />
+                
+                {/* Glass Windshield & Side Windows */}
+                <path d="M 55 30 Q 64 32 67 41 L 55 41 Z" fill="#0A0F1E" />
+                <rect x="38" y="31" width="13" height="10" rx="1" fill="#0A0F1E" />
+                <rect x="23" y="31" width="11" height="10" rx="1" fill="#0A0F1E" />
+                
+                {/* Cab Styling Details */}
+                <rect x="44" y="47" width="22" height="2.5" rx="0.5" fill="#F97316" /> {/* Orange decal line */}
+                <rect x="66" y="49" width="4" height="2" fill="#F97316" /> {/* Amber marker light */}
+                <circle cx="15" cy="49" r="1.5" fill="#F97316" />
+                
+                {/* Exhaust Stack */}
+                <rect x="13" y="12" width="3" height="26" fill="#94A3B8" />
+                <path d="M 13 12 Q 15 8 18 12 Z" fill="#94A3B8" />
+                
+                {/* Top Deck Car (Minimalist White Sedan) */}
+                <g transform="translate(90, 4)">
+                  <path d="M 5 12 C 10 12 15 4 25 4 L 45 4 C 55 4 60 12 65 12 L 68 14 C 68 15 65 15 5 15 Z" fill="#FFFFFF" />
+                  <path d="M 18 11 L 24 5 L 35 5 L 42 11 Z" fill="#0A0F1E" />
+                  <circle cx="15" cy="14" r="3.5" fill="#1E293B" />
+                  <circle cx="15" cy="14" r="1.5" fill="#94A3B8" />
+                  <circle cx="53" cy="14" r="3.5" fill="#1E293B" />
+                  <circle cx="53" cy="14" r="1.5" fill="#94A3B8" />
+                </g>
+                
+                {/* Bottom Deck Car (Minimalist White Sedan) */}
+                <g transform="translate(140, 39)">
+                  <path d="M 5 12 C 10 12 15 4 25 4 L 45 4 C 55 4 60 12 65 12 L 68 14 C 68 15 65 15 5 15 Z" fill="#FFFFFF" />
+                  <path d="M 18 11 L 24 5 L 35 5 L 42 11 Z" fill="#0A0F1E" />
+                  <circle cx="15" cy="14" r="3.5" fill="#1E293B" />
+                  <circle cx="15" cy="14" r="1.5" fill="#94A3B8" />
+                  <circle cx="53" cy="14" r="3.5" fill="#1E293B" />
+                  <circle cx="53" cy="14" r="1.5" fill="#94A3B8" />
+                </g>
+
+                {/* Carrier Wheels */}
+                <circle cx="28" cy="58" r="7.5" fill="#0A0F1E" />
+                <circle cx="28" cy="58" r="3.5" fill="#94A3B8" />
+                <circle cx="28" cy="58" r="1" fill="#FFFFFF" />
+
+                <circle cx="60" cy="58" r="7.5" fill="#0A0F1E" />
+                <circle cx="60" cy="58" r="3.5" fill="#94A3B8" />
+                <circle cx="60" cy="58" r="1" fill="#FFFFFF" />
+
+                <circle cx="114" cy="58" r="7.5" fill="#0A0F1E" />
+                <circle cx="114" cy="58" r="3.5" fill="#94A3B8" />
+                <circle cx="114" cy="58" r="1" fill="#FFFFFF" />
+
+                <circle cx="130" cy="58" r="7.5" fill="#0A0F1E" />
+                <circle cx="130" cy="58" r="3.5" fill="#94A3B8" />
+                <circle cx="130" cy="58" r="1" fill="#FFFFFF" />
+
+                <circle cx="188" cy="58" r="7.5" fill="#0A0F1E" />
+                <circle cx="188" cy="58" r="3.5" fill="#94A3B8" />
+                <circle cx="188" cy="58" r="1" fill="#FFFFFF" />
+
+                <circle cx="204" cy="58" r="7.5" fill="#0A0F1E" />
+                <circle cx="204" cy="58" r="3.5" fill="#94A3B8" />
+                <circle cx="204" cy="58" r="1" fill="#FFFFFF" />
+              </svg>
+            </div>
+          </motion.div>
+        </div>
       </div>
 
       {/* Trust Strip */}

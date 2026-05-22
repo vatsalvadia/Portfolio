@@ -11,6 +11,7 @@ const PerformanceMarketing = dynamic(() => import("@/components/PerformanceMarke
 const CaseStudy = dynamic(() => import("@/components/CaseStudy"));
 const GrowthAssets = dynamic(() => import("@/components/GrowthAssets"));
 const FounderSection = dynamic(() => import("@/components/FounderSection"));
+const TeamSection = dynamic(() => import("@/components/TeamSection"));
 const FaqSection = dynamic(() => import("@/components/FaqSection"));
 const Footer = dynamic(() => import("@/components/Footer"));
 
@@ -81,6 +82,7 @@ export default function Home() {
           <CaseStudy />
           <GrowthAssets />
           <FounderSection />
+          <TeamSection />
           <FaqSection />
         </main>
         <Footer />
