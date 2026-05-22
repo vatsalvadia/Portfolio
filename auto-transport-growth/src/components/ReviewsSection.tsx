@@ -1,7 +1,6 @@
 "use client";
-
 import React from "react";
-import { Star, TrendingUp } from "lucide-react";
+import { Star, TrendingUp, CheckCircle2 } from "lucide-react";
 import RevealSection from "./RevealSection";
 
 interface Review {
@@ -9,6 +8,7 @@ interface Review {
   role: string;
   company: string;
   badge: string;
+  rating: number;
   testimonial: string;
 }
 
@@ -19,6 +19,7 @@ const reviews: Review[] = [
     role: "CEO",
     company: "Sterling Auto Logistics",
     badge: "CA to FL Lane",
+    rating: 5,
     testimonial: "Shared leads were destroying our margins—paying for lists sold to 5 other brokers. By moving to our own exclusive funnel, we bypassed Central Dispatch bidding and scaled CA to FL bookings by 180% at a 22% average gross margin.",
   },
   {
@@ -26,6 +27,7 @@ const reviews: Review[] = [
     role: "Operations Director",
     company: "Prestige Exotics Transport",
     badge: "Enclosed Category",
+    rating: 5,
     testimonial: "High-ticket exotic clients don't convert through generic forms. The custom landing pages and CRM automations they built established instant authority. We went from booking 8 enclosed multi-car runs a month to over 30.",
   },
   {
@@ -33,6 +35,7 @@ const reviews: Review[] = [
     role: "VP of Dispatch",
     company: "Titan Heavy Haul",
     badge: "Heavy Equipment",
+    rating: 4.5,
     testimonial: "Our dispatchers were wasting hours chasing cold quotes. The automated pipeline qualifies heavy machinery transport leads on weight, dimensions, and route viability before it even hits our dashboard. Booking rate is up 3.5x.",
   },
   {
@@ -40,6 +43,7 @@ const reviews: Review[] = [
     role: "Marketing Manager",
     company: "Apex Carrier Group",
     badge: "Midwest Lanes",
+    rating: 5,
     testimonial: "We had a self-owned funnel before, but it lacked route precision. They rebuilt our geo-targeted campaigns for Chicago-to-Dallas lanes, cutting our cost per acquisition by 54% while maintaining high-quality direct shipper contact info.",
   },
   {
@@ -47,6 +51,7 @@ const reviews: Review[] = [
     role: "Founder",
     company: "Mendez Transport Services",
     badge: "CA to TX Lane",
+    rating: 4.5,
     testimonial: "Their CRM setup changed everything. As soon as a CA to TX lead lands, they receive a customized text and email with active route pricing. We are booking direct shippers before the competition even opens the email.",
   },
   {
@@ -54,6 +59,7 @@ const reviews: Review[] = [
     role: "Director of Sales",
     company: "Horizon Auto Shippers",
     badge: "Snowbird Routes",
+    rating: 5,
     testimonial: "The seasonal snowbird rush used to be a stressful bidding war on shared platforms. Now we run targeted funnels for NY-to-FL and MI-to-AZ retirees. We pre-booked 70% of our capacity three months before the season started.",
   },
   {
@@ -61,6 +67,7 @@ const reviews: Review[] = [
     role: "Founder",
     company: "Miller & Sons Towing",
     badge: "Regional Towing",
+    rating: 4,
     testimonial: "We wanted to transition from local towing to regional multi-car transport. They set up our entire digital presence and lead engine from scratch. We went from zero regional contracts to fully booked weekly loops in under 45 days.",
   },
   {
@@ -68,6 +75,7 @@ const reviews: Review[] = [
     role: "Logistics Chief",
     company: "Nomad Vehicle Logistics",
     badge: "Cross-Country Lanes",
+    rating: 5,
     testimonial: "Their attribution modeling allowed us to see which exact routes were profitable. We stopped burning money on low-volume lanes and focused strictly on the high-margin cross-country corridors. The ROI was clear in week two.",
   },
   {
@@ -75,6 +83,7 @@ const reviews: Review[] = [
     role: "Lead Dispatcher",
     company: "Velocity Auto Logistics",
     badge: "Broker Operations",
+    rating: 4.5,
     testimonial: "Carriers love working with us now because we have clean, verified route data and quick deposit locks. The exclusive funnel filters out tire-kickers, so our dispatchers only talk to clients ready to sign the dispatch contract.",
   },
   {
@@ -82,6 +91,7 @@ const reviews: Review[] = [
     role: "VP of Growth",
     company: "Vanguard Transport Solutions",
     badge: "B2B Dealerships",
+    rating: 5,
     testimonial: "We targeted regional dealerships for dealer-trade transport. The custom funnel generated direct dealer inquiries that completely bypassed standard load boards. We've added 14 recurring dealer accounts to our portfolio.",
   },
 
@@ -91,6 +101,7 @@ const reviews: Review[] = [
     role: "President",
     company: "Pacific Coast Auto Shipping",
     badge: "CA to WA Lane",
+    rating: 5,
     testimonial: "We struggled with low conversion rates on our site for years. Their UX audit and redesigned funnel turned our traffic around. Conversion went from 2.1% to 11.4%, bringing in highly profitable West Coast direct routes.",
   },
   {
@@ -98,6 +109,7 @@ const reviews: Review[] = [
     role: "Operations Head",
     company: "SafeWay Car Shipping",
     badge: "Central Dispatch",
+    rating: 4.5,
     testimonial: "Before this, we relied 100% on Central Dispatch to find loads, which kept our margins razor-thin. Now, with our own lead machine, we dictate our prices and contract direct carriers, keeping an extra 15% margin on every car.",
   },
   {
@@ -105,6 +117,7 @@ const reviews: Review[] = [
     role: "Co-Founder",
     company: "Freedom Express Shippers",
     badge: "FL to TX Lane",
+    rating: 5,
     testimonial: "The speed-to-lead in auto transport is everything. Their automated text auto-responder contacts the customer within 4 seconds of form submission. We are closing 35% of all inbound FL to TX quotes on the very first call.",
   },
   {
@@ -112,6 +125,7 @@ const reviews: Review[] = [
     role: "Dispatch Supervisor",
     company: "Metro Car Carriers",
     badge: "Multi-Car Transport",
+    rating: 5,
     testimonial: "Managing 10-car haulers is tough without consistent route volume. This system gives us the exact lane density we need. We've eliminated deadhead miles on our primary routes because we always have backing loads ready.",
   },
   {
@@ -119,6 +133,7 @@ const reviews: Review[] = [
     role: "CEO",
     company: "Summit Auto Brokers",
     badge: "Self-Owned Funnel",
+    rating: 4,
     testimonial: "Buying shared leads was a race to the bottom where only the cheapest, lowest-quality broker won. Our proprietary funnel lets us sell quality, enclosed safety, and guaranteed pickup dates at a premium. Our revenue has doubled.",
   },
   {
@@ -126,6 +141,7 @@ const reviews: Review[] = [
     role: "Marketing Director",
     company: "Milano Premium Logistics",
     badge: "Exotics Category",
+    rating: 5,
     testimonial: "They understand the high-end vehicle transport market inside and out. The copy, the dark glass design, and the interactive route map built absolute trust with our vintage car collectors. Our cost-per-booking has plummeted.",
   },
   {
@@ -133,6 +149,7 @@ const reviews: Review[] = [
     role: "Founder",
     company: "Hodge Transport",
     badge: "Open Carrier Dispatch",
+    rating: 4.5,
     testimonial: "As an owner-operator, I didn't have time to run ads. They fully managed the setup, integration, and lead optimization. Now I get text alerts when a high-margin load is booked, and I just focus on driving.",
   },
   {
@@ -140,6 +157,7 @@ const reviews: Review[] = [
     role: "VP of Operations",
     company: "Atlas Auto Logistics",
     badge: "FL to CA Lane",
+    rating: 5,
     testimonial: "We were skeptical about generating direct shipper leads for cross-country routes, but the results speak for themselves. The FL to CA lead funnel has maintained a steady flow of high-intent clients even during the off-season.",
   },
   {
@@ -147,6 +165,7 @@ const reviews: Review[] = [
     role: "Sales Director",
     company: "Ironclad Auto Shippers",
     badge: "Military Moves",
+    rating: 5,
     testimonial: "We wanted to capture military PCS vehicle relocations. They developed a targeted landing page offering custom military transport calculators. We went from occasional bookings to being the go-to broker for three regional bases.",
   },
   {
@@ -154,6 +173,7 @@ const reviews: Review[] = [
     role: "Operations Manager",
     company: "Zenith Auto Transport",
     badge: "TX to NY Lane",
+    rating: 4.5,
     testimonial: "The lead quality from this system is night and day compared to third-party lists. These clients are actively searching for car shipping quotes on specific lanes, which makes our sales script 10 times easier to execute.",
   },
 
@@ -163,6 +183,7 @@ const reviews: Review[] = [
     role: "Founder",
     company: "Kael Express Logistics",
     badge: "CA to AZ Lane",
+    rating: 5,
     testimonial: "We consolidated our lead capture and SMS nurture into one central platform. Now, leads that don't book immediately are automatically nurtured over 30 days. We've recovered over $45,000 in lost quotes this quarter alone.",
   },
   {
@@ -170,6 +191,7 @@ const reviews: Review[] = [
     role: "Marketing Lead",
     company: "Central Valley Shipping",
     badge: "Agricultural Hauling",
+    rating: 4.5,
     testimonial: "We specialize in shipping agricultural machinery and large trucks. The custom funnel's weight calculators prevent inaccurate quote disputes. Our dispatchers now have a 92% accurate price lock-in rate.",
   },
   {
@@ -177,6 +199,7 @@ const reviews: Review[] = [
     role: "CEO",
     company: "Brooks & Co. Transports",
     badge: "Snowbird Routes",
+    rating: 5,
     testimonial: "Retirees want phone calls, not just texts. The system was customized to instantly patch hot leads through to our inbound sales line. Our phone bookings on the Northeast to Southeast lanes have surged by 300%.",
   },
   {
@@ -184,6 +207,7 @@ const reviews: Review[] = [
     role: "Logistics Coordinator",
     company: "Golden Gate Freight",
     badge: "CA to TX Lane",
+    rating: 5,
     testimonial: "The integration with our CRM is flawless. No duplicate leads, automatic geographic assignment, and instant route mileage calculations. It has saved our operations team at least 20 hours of manual work every week.",
   },
   {
@@ -191,6 +215,7 @@ const reviews: Review[] = [
     role: "Director",
     company: "Raccoon Auto Shippers",
     badge: "Enclosed Category",
+    rating: 4,
     testimonial: "We transport classic sports cars. The luxury glassmorphic look of our new landing page mirrors the high-end service we provide. Classic car club members now request our services directly, bypassing all brokers.",
   },
   {
@@ -198,6 +223,7 @@ const reviews: Review[] = [
     role: "Operations Specialist",
     company: "Pacific Rim Logistics",
     badge: "Port Auto Import",
+    rating: 5,
     testimonial: "Imported vehicles coming through West Coast ports need rapid dispatch to inland hubs. The system triggers carrier alerts the second customs clears the VIN. It's cut our port dwell times by an average of 48 hours.",
   },
   {
@@ -205,6 +231,7 @@ const reviews: Review[] = [
     role: "Sales VP",
     company: "Titanium Auto Transport",
     badge: "Broker Operations",
+    rating: 5,
     testimonial: "We went from cold calling dealerships to having dealers book transport orders directly through our self-owned portal. The booking fee model has increased our monthly recurring revenue by 40% year-over-year.",
   },
   {
@@ -212,6 +239,7 @@ const reviews: Review[] = [
     role: "Director",
     company: "Black Swan Logistics",
     badge: "NY to CA Lane",
+    rating: 4.5,
     testimonial: "Moving cars from NY to CA is highly competitive. Standard Google Ads were too expensive. Their long-tail route-specific search campaigns drove down our CPC by 60% while bringing in high-intent direct shippers.",
   },
   {
@@ -219,6 +247,7 @@ const reviews: Review[] = [
     role: "Founder",
     company: "Excalibur Auto Transport",
     badge: "UK/US Classic Lanes",
+    rating: 5,
     testimonial: "Overseas classic car transport requires extreme trust. The trust elements, review carousels, and security badges integrated into our custom funnel reduced user friction, lifting our international booking rate by 85%.",
   },
   {
@@ -226,6 +255,7 @@ const reviews: Review[] = [
     role: "CEO",
     company: "Gotham Exotics Shippers",
     badge: "Exotics Category",
+    rating: 5,
     testimonial: "Our previous agency had no clue about the carrier-dispatch relationship. These guys built a funnel that qualifies the user's budget first. We no longer waste time on low-paying loads that carriers refuse to pull.",
   },
 ];
@@ -249,17 +279,54 @@ const getAvatarBg = (index: number) => {
   return gradients[index % gradients.length];
 };
 
+const renderStars = (rating: number, id: string) => {
+  return (
+    <div className="flex items-center gap-0.5">
+      {[1, 2, 3, 4, 5].map((starIndex) => {
+        if (rating >= starIndex) {
+          // Full Star
+          return (
+            <Star key={starIndex} className="w-3.5 h-3.5 fill-brand-orange text-brand-orange" />
+          );
+        } else if (rating === starIndex - 0.5) {
+          // Half Star
+          const gradId = `half-star-${id}-${starIndex}`;
+          return (
+            <svg key={starIndex} className="w-3.5 h-3.5" viewBox="0 0 24 24">
+              <defs>
+                <linearGradient id={gradId}>
+                  <stop offset="50%" stopColor="#F97316" />
+                  <stop offset="50%" stopColor="#1F2937" />
+                </linearGradient>
+              </defs>
+              <path 
+                d="M12 .587l3.668 7.431 8.2 1.192-5.934 5.787 1.4 8.168L12 18.896l-7.334 3.87 1.4-8.168L.132 9.21l8.2-1.192L12 .587z" 
+                fill={`url(#${gradId})`}
+                className="stroke-brand-orange/40 stroke-1"
+              />
+            </svg>
+          );
+        } else {
+          // Empty Star
+          return (
+            <svg key={starIndex} className="w-3.5 h-3.5 text-brand-border fill-brand-border/40" viewBox="0 0 24 24">
+              <path d="M12 .587l3.668 7.431 8.2 1.192-5.934 5.787 1.4 8.168L12 18.896l-7.334 3.87 1.4-8.168L.132 9.21l8.2-1.192L12 .587z" />
+            </svg>
+          );
+        }
+      })}
+    </div>
+  );
+};
+
 function ReviewCard({ review, index }: { review: Review; index: number }) {
+  const uniqueId = `${index}-${review.name.replace(/\s+/g, "-")}`;
   return (
     <div className="bg-brand-card/60 border border-brand-border/60 hover:border-brand-orange/40 backdrop-blur-sm p-6 rounded-xl w-[350px] shrink-0 transition-all duration-300 flex flex-col justify-between hover:shadow-[0_0_25px_rgba(249,115,22,0.08)]">
       <div>
         {/* Rating Stars & Badge */}
         <div className="flex items-center justify-between gap-2 mb-4">
-          <div className="flex items-center gap-0.5">
-            {[...Array(5)].map((_, i) => (
-              <Star key={i} className="w-3.5 h-3.5 fill-brand-orange text-brand-orange" />
-            ))}
-          </div>
+          {renderStars(review.rating, uniqueId)}
           <span className="text-[10px] font-semibold text-brand-orange bg-brand-orange/10 border border-brand-orange/20 px-2 py-0.5 rounded-full uppercase tracking-wider">
             {review.badge}
           </span>
@@ -297,7 +364,6 @@ function ReviewCard({ review, index }: { review: Review; index: number }) {
 }
 
 export default function ReviewsSection() {
-  // Split the 30 reviews into 3 rows of 10
   const row1 = reviews.slice(0, 10);
   const row2 = reviews.slice(10, 20);
   const row3 = reviews.slice(20, 30);
@@ -309,7 +375,7 @@ export default function ReviewsSection() {
       
       <div className="w-full relative z-10">
         {/* Section Header */}
-        <div className="max-w-[1280px] mx-auto px-6 mb-16">
+        <div className="max-w-[1280px] mx-auto px-6 mb-12">
           <RevealSection variant="fadeUp" className="text-center">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-orange/10 border border-brand-orange/20 text-brand-orange text-xs font-bold uppercase tracking-wider mb-4">
               <TrendingUp className="w-3.5 h-3.5" /> Direct Booking Testimonials
@@ -317,15 +383,62 @@ export default function ReviewsSection() {
             <h2 className="font-headline text-4xl md:text-5xl text-brand-white mb-4">
               Proven in the Lanes
             </h2>
-            <p className="font-body text-brand-gray text-lg max-w-2xl mx-auto">
+            <p className="font-body text-brand-gray text-lg max-w-2xl mx-auto mb-8">
               Real feedback from brokerages and carriers who reclaimed their margins by transitioning from shared lists to self-owned growth funnels.
             </p>
+
+            {/* US Conversion & Trust Summary Card */}
+            <div className="flex flex-wrap justify-center items-center gap-6 md:gap-10 max-w-3xl mx-auto px-6 py-4 rounded-xl bg-brand-card/40 border border-brand-border/60 backdrop-blur-md shadow-lg mb-4">
+              {/* Avg Rating */}
+              <div className="flex items-center gap-3 border-r border-brand-border/60 pr-6 md:pr-10 last:border-r-0">
+                <span className="text-3xl font-extrabold text-brand-orange">4.8</span>
+                <div className="flex flex-col items-start">
+                  <div className="flex items-center gap-0.5">
+                    {[...Array(4)].map((_, i) => (
+                      <Star key={i} className="w-3.5 h-3.5 fill-brand-orange text-brand-orange" />
+                    ))}
+                    <svg className="w-3.5 h-3.5" viewBox="0 0 24 24">
+                      <defs>
+                        <linearGradient id="summary-half-star-badge">
+                          <stop offset="80%" stopColor="#F97316" />
+                          <stop offset="80%" stopColor="#1F2937" />
+                        </linearGradient>
+                      </defs>
+                      <path 
+                        d="M12 .587l3.668 7.431 8.2 1.192-5.934 5.787 1.4 8.168L12 18.896l-7.334 3.87 1.4-8.168L.132 9.21l8.2-1.192L12 .587z" 
+                        fill="url(#summary-half-star-badge)"
+                      />
+                    </svg>
+                  </div>
+                  <span className="text-[10px] text-brand-gray/80 uppercase tracking-widest font-bold font-body mt-0.5">Avg rating (30 reviews)</span>
+                </div>
+              </div>
+              
+              {/* Verified Lanes */}
+              <div className="flex items-center gap-2.5 border-r border-brand-border/60 pr-6 md:pr-10 last:border-r-0">
+                <CheckCircle2 className="w-6 h-6 text-teal-400 shrink-0" />
+                <div className="flex flex-col items-start">
+                  <span className="text-md font-extrabold text-brand-white">100% Verified</span>
+                  <span className="text-[10px] text-brand-gray/80 uppercase tracking-widest font-bold font-body">US Route Lane Data</span>
+                </div>
+              </div>
+
+              {/* FMCSA / USDOT */}
+              <div className="flex items-center gap-2.5">
+                <div className="w-6 h-6 rounded-full bg-blue-500/10 border border-blue-500/25 flex items-center justify-center text-blue-400 font-headline text-xs font-bold shrink-0">
+                  ★
+                </div>
+                <div className="flex flex-col items-start">
+                  <span className="text-md font-extrabold text-brand-white">FMCSA SAFER</span>
+                  <span className="text-[10px] text-brand-gray/80 uppercase tracking-widest font-bold font-body">Licensed Compliance</span>
+                </div>
+              </div>
+            </div>
           </RevealSection>
         </div>
 
         {/* Marquee Rows Container */}
         <div className="flex flex-col gap-6 relative w-full overflow-hidden">
-          
           {/* Gradient fade-out overlays on the sides for premium luxury feel */}
           <div className="absolute inset-y-0 left-0 w-12 md:w-32 bg-gradient-to-r from-brand-bg via-brand-bg/60 to-transparent z-10 pointer-events-none" />
           <div className="absolute inset-y-0 right-0 w-12 md:w-32 bg-gradient-to-l from-brand-bg via-brand-bg/60 to-transparent z-10 pointer-events-none" />
@@ -365,7 +478,6 @@ export default function ReviewsSection() {
               ))}
             </div>
           </div>
-
         </div>
       </div>
     </section>

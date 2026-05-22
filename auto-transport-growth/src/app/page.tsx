@@ -10,7 +10,6 @@ const SharedVsOwned = dynamic(() => import("@/components/SharedVsOwned"));
 const PerformanceMarketing = dynamic(() => import("@/components/PerformanceMarketing"));
 const CaseStudy = dynamic(() => import("@/components/CaseStudy"));
 const GrowthAssets = dynamic(() => import("@/components/GrowthAssets"));
-const FounderSection = dynamic(() => import("@/components/FounderSection"));
 const TeamSection = dynamic(() => import("@/components/TeamSection"));
 const ReviewsSection = dynamic(() => import("@/components/ReviewsSection"));
 const FaqSection = dynamic(() => import("@/components/FaqSection"));
@@ -82,7 +81,6 @@ export default function Home() {
           <PerformanceMarketing />
           <CaseStudy />
           <GrowthAssets />
-          <FounderSection />
           <TeamSection />
           {/* Reviews section featuring 30 client testimonials in a marquee layout */}
           <ReviewsSection />
