@@ -84,6 +84,7 @@ export default function Home() {
           <GrowthAssets />
           <FounderSection />
           <TeamSection />
+          {/* Reviews section featuring 30 client testimonials in a marquee layout */}
           <ReviewsSection />
           <FaqSection />
         </main>
